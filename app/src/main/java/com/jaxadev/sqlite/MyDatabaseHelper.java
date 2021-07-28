@@ -2,6 +2,7 @@ package com.jaxadev.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -55,12 +56,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PAGES, pages);
 
         long result = db.insert(TABLE_NAME, null, cv);
-        if (result == -1){
-            Toast.makeText(context,"Failed", Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(context,"Added Successfully!", Toast.LENGTH_LONG).show();
+        if (result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    Cursor readAllData() {
+
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if (db != null) {
+
+            cursor = db.rawQuery(query, null);
+
+        }
+        return cursor;
     }
 
 }
