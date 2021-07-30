@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SQLite</string>
+    <string name="id_key">id</string>
+    <string name="title_key">title</string>
+    <string name="author_key">author</string>
+    <string name="pages_key">pages</string>
 </resources>

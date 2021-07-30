@@ -47,9 +47,23 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArray();
 
-        bookAdapter = new BookAdapter(books);
+        bookAdapter = new BookAdapter(books, new BookAdapter.ItemClickListener() {
+            @Override
+            public void onClick(Book book) {
+
+                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+                intent.putExtra(getString(R.string.id_key), book.id);
+                intent.putExtra(getString(R.string.title_key), book.title);
+                intent.putExtra(getString(R.string.author_key), book.author);
+                intent.putExtra(getString(R.string.pages_key), book.pages);
+                startActivity(intent);
+
+            }
+        });
 
         recyclerView.setAdapter(bookAdapter);
+
+        bookAdapter.notifyDataSetChanged();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 

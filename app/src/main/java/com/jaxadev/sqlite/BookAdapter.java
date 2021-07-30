@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     ArrayList<Book> books;
+    ItemClickListener itemClickListener;
 
-    public BookAdapter(ArrayList<Book> books) {
+    public BookAdapter(ArrayList<Book> books, ItemClickListener itemClickListener) {
         this.books = books;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -35,6 +37,20 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         holder.title.setText(book.title);
         holder.id.setText(book.id);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                itemClickListener.onClick(book);
+
+            }
+        });
+
+
+    }
+
+    public interface ItemClickListener {
+        void onClick(Book book);
     }
 
     @Override
