@@ -14,7 +14,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     ArrayList<Book> books;
     ItemClickListener itemClickListener;
-
     public BookAdapter(ArrayList<Book> books, ItemClickListener itemClickListener) {
         this.books = books;
         this.itemClickListener = itemClickListener;
